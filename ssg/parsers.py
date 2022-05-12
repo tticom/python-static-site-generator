@@ -3,8 +3,7 @@ from pathlib import Path
 import shutil
 
 class Parser():
-  def __init__(self):
-    self.extensions: List[str] = []
+  extensions: List[str] = []
 
   def valid_extension(self, extension):
     return extension in self.extensions
@@ -13,7 +12,7 @@ class Parser():
     raise NotImplementedError
 
   def read(self, path: Path):
-    with open(path.name, 'r') as file:
+    with open(path, 'r') as file:
       return file.read()
 
   def write(self, path, dest, content, ext=".html"):
@@ -25,8 +24,7 @@ class Parser():
     shutil.copy2(path, dest / path.relative_to(source))
 
 class ResourceParser(Parser):
-  def __init__(self):
-    self.extensions = [".jpg", ".png", ".gif", ".css", ".html"]
+  extensions = [".jpg", ".png", ".gif", ".css", ".html"]
 
   def parse(self, path: Path, source: Path, dest: Path):
     self.copy(path, source, dest)
