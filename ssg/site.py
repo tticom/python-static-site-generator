@@ -8,10 +8,10 @@ class Site:
 
   def create_dir(self, path):
     directory = self.dest / path.relative_to(path)
-    Path.mkdir(directory, parents=True, exist_ok=True)
+    directory.mkdir(parents=True, exist_ok=True)
 
   def build(self):
-    Path.mkdir(self.dest, parents=True, exist_ok=True)
+    self.dest.mkdir(parents=True, exist_ok=True)
     for p in self.source.rglob("*"):
-      if Path.is_dir(p):
+      if p.is_dir(p):
         self.create_dir(p)
