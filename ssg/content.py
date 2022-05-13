@@ -22,10 +22,10 @@ class Content(Mapping):
   def body(self): return self.data["content"]
 
   @property
-  def type(self): return self.data["type"] if "type" in self.data else None
-  
+  def type(self): return self.data["type"] if "type" in self.data else None  
+
   @type.setter
-  def type(self):
+  def type(self, type):
     self.data["type"] = property(type)
 
   def __getitem__(self, key: str):
